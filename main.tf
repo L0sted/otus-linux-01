@@ -62,7 +62,13 @@ data "yandex_compute_image" "my_image" {
   family = var.vmimage
 }
 
+resource "local_file" "inv" {
+    content = "otus-vm ansible_host=${yandex_vpc_address.addr.external_ipv4_address[0].address} ansible_ssh_common_args='-o StrictHostKeyChecking=no' ansible_ssh_user=ubuntu"
+    filename = "./inventory"
+}
+
+
 output "ipv4_address" {
   description = "IP Address of created VM"
-  value       = yandex_compute_instance.otus-vm.network_interface[0].ip_address
+  value       = yandex_vpc_address.addr.external_ipv4_address[0].address
 }
