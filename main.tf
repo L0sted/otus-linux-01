@@ -80,6 +80,11 @@ resource "yandex_compute_instance" "otus-vm" {
     ignore_changes = [boot_disk[0].initialize_params[0].image_id]
   }
 
+  # Provision VM With ansible
+  provisioner "local-exec" {
+    command = "ansible-playbook -i ./inventory nginx-install.yml"
+  }
+
 }
 
 

@@ -44,3 +44,4 @@ export YC_FOLDER_ID=$(yc config get folder-id)
 12. Изменил количество ресурсов и уменьшил долю vCPU до 5%
 13. Для удобства создал файл `variable.tf` с описанием переменных и `terraform.tfvars` с сами переменными
 14. Подключил публичный IPv4 адрес через `nat_ip_address = yandex_vpc_address.addr.external_ipv4_address[0].address` и `nat            = true` в блоке `network_interface` ресурса `otus-vm`
+15. Написал ansible плейбук, который ждет доступности хоста и устанавливает nginx
